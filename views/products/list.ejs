@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+  <%- include('../partials/header') %>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Perfumes</h2>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; margin-bottom:24px;">
+        <a class="btn btn-solid" href="/productos/nuevo">Añadir perfume</a>
+      </div>
+
+      <% if (products.length === 0) { %>
+        <p style="text-align:center; color: var(--muted);">Todavía no hay perfumes cargados.</p>
+      <% } else { %>
+        <div class="prod-grid">
+          <% products.forEach(function(product) { %>
+            <div class="prod-card">
+              <div class="prod-thumb">
+                <% if (product.badge) { %>
+                  <span class="prod-badge"><%= product.badge %></span>
+                <% } %>
+                <% if (product.image) { %>
+                  <img src="<%= product.image %>" alt="<%= product.brand %> <%= product.name %>" style="max-height:100%; object-fit:contain;">
+                <% } else { %>
+                  <div class="hero-bottle">
+                    <div class="hb-cap"></div>
+                    <div class="hb-neck"></div>
+                    <div class="hb-body"><span><%= product.brand %></span></div>
+                  </div>
+                <% } %>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand"><%= product.brand %> · <%= product.category %></div>
+                <div class="prod-name"><%= product.name %></div>
+                <div class="prod-desc"><%= product.description %></div>
+                <div class="prod-footer">
+                  <div class="prod-price">COP $<%= product.price.toLocaleString('es-CO') %></div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                  <a class="btn" style="flex:1; justify-content:center;" href="/productos/<%= product.id %>/editar">Editar</a>
+                  <form action="/productos/<%= product.id %>?_method=DELETE" method="POST" style="flex:1;" onsubmit="return confirm('¿Eliminar este perfume?');">
+                    <button class="btn btn-block" type="submit" style="border-color:#7a4b4b; color:#e0a8a8;">Eliminar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+
+</body>
+</html>

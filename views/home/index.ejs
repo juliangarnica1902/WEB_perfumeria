@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+  <%- include('../partials/header') %>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero-smoke"></div>
+    <div class="wrap hero-content">
+      <span class="eyebrow">Colección exclusiva</span>
+      <div class="hero-bottle">
+        <div class="hb-cap"></div>
+        <div class="hb-neck"></div>
+        <div class="hb-body"><span>Essenza</span></div>
+      </div>
+      <h1>La fragancia que te define</h1>
+      <p>Perfumes originales de las mejores casas del mundo, con garantía de autenticidad en cada frasco.</p>
+      <a class="btn btn-solid" href="/productos">Comprar Essenza</a>
+    </div>
+  </section>
+
+  <!-- ============ PROMO BAR ============ -->
+  <div class="promo-bar">
+    <div class="wrap">
+      <div class="promo-track">
+        <span>Envío gratis en compras superiores a $200.000</span>
+        <span>100% originales y sellados</span>
+        <span>Paga contra entrega en todo el país</span>
+        <span>Envío gratis en compras superiores a $200.000</span>
+        <span>100% originales y sellados</span>
+        <span>Paga contra entrega en todo el país</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRODUCTOS DESTACADOS (dinámico) ============ -->
+  <section class="section" id="perfumes">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Más vendidos</span>
+        <h2>Perfumes destacados</h2>
+      </div>
+
+      <% if (featured.length === 0) { %>
+        <p style="text-align:center; color: var(--muted);">
+          Todavía no hay perfumes cargados. <a href="/productos/nuevo" style="color: var(--gold);">Añade el primero</a>.
+        </p>
+      <% } else { %>
+        <div class="prod-grid">
+          <% featured.forEach(function(product) { %>
+            <div class="prod-card">
+              <div class="prod-thumb">
+                <% if (product.badge) { %>
+                  <span class="prod-badge"><%= product.badge %></span>
+                <% } %>
+                <% if (product.image) { %>
+                  <img src="<%= product.image %>" alt="<%= product.brand %> <%= product.name %>" style="max-height:100%; object-fit:contain;">
+                <% } else { %>
+                  <div class="hero-bottle">
+                    <div class="hb-cap"></div>
+                    <div class="hb-neck"></div>
+                    <div class="hb-body"><span><%= product.brand %></span></div>
+                  </div>
+                <% } %>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand"><%= product.brand %></div>
+                <div class="prod-name"><%= product.name %></div>
+                <div class="prod-desc"><%= product.description %></div>
+                <div class="prod-footer">
+                  <div class="prod-price">COP $<%= product.price.toLocaleString('es-CO') %></div>
+                </div>
+                <button class="btn btn-block" type="button">Comprar ahora</button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+          <a class="btn" href="/productos">Ver todos los perfumes</a>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORÍAS ============ -->
+  <section>
+    <div class="cat-grid">
+      <div class="cat-card men">
+        <div class="cat-content">
+          <h3>Perfumes para hombre</h3>
+          <a class="btn btn-small" href="/productos">Comprar ahora</a>
+        </div>
+      </div>
+      <div class="cat-card women">
+        <div class="cat-content">
+          <h3>Perfumes para mujeres</h3>
+          <a class="btn btn-small" href="/productos">Comprar ahora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST BADGES ============ -->
+  <section class="trust">
+    <div class="wrap trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">☎</div>
+        <span>Contáctenos</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <span>Pagos seguros</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">↺</div>
+        <span>Envíos y devoluciones</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✈</div>
+        <span>Envío a todo el país</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANIFIESTO ============ -->
+  <section class="manifest" id="nosotros">
+    <div class="wrap">
+      <h2>La perfumería original más completa</h2>
+      <p>En ESSENZA llevamos más de 10 años ofreciendo la mayor variedad de fragancias originales en Colombia. Contamos con más de 2.000 fragancias disponibles, distribuidas para todo el país con soporte al cliente 24/7 de las marcas Valentino, Versace, Carolina Herrera y muchas más originales. Compra online y recibe donde te encuentres.</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="contacto" id="contacto">
+    <div class="wrap">
+      <div class="contacto-box">
+        <h2>Escríbenos</h2>
+        <p class="sub">Resolvemos tus dudas sobre pedidos, envíos y disponibilidad.</p>
+        <form onsubmit="return false;">
+          <div class="field">
+            <label for="c-nombre">Nombre</label>
+            <input id="c-nombre" type="text" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Correo electrónico</label>
+            <input id="c-email" type="email" placeholder="tucorreo@ejemplo.com" required>
+          </div>
+          <div class="field">
+            <label for="c-mensaje">Mensaje</label>
+            <textarea id="c-mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea>
+          </div>
+          <button class="btn btn-solid btn-block" type="submit">Enviar mensaje</button>
+        </form>
+        <div class="contact-info">
+          <span>Bogotá · Medellín · Cali</span>
+          <span>(601) 555 0192 · contacto@essenza.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter">
+    <div class="wrap news-box">
+      <p>Suscríbete y recibe lanzamientos y ofertas exclusivas.</p>
+      <form class="news-form" onsubmit="return false;">
+        <label for="news-email" style="position:absolute;left:-9999px;">Correo electrónico</label>
+        <input id="news-email" type="email" placeholder="Tu correo electrónico" required>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+
+</body>
+</html>

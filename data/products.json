@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "brand": "Valentino",
+    "name": "Born in Roma",
+    "description": "Ámbar floral, fresco, con notas de sándalo y vainilla.",
+    "price": 185000,
+    "badge": "-15%",
+    "category": "mujer",
+    "image": ""
+  },
+  {
+    "id": 2,
+    "brand": "Versace",
+    "name": "Eros",
+    "description": "Menta, manzana verde y vainilla. Fresco, dulce y masculino.",
+    "price": 425000,
+    "badge": "",
+    "category": "hombre",
+    "image": ""
+  },
+  {
+    "id": 3,
+    "brand": "Carolina Herrera",
+    "name": "CH 24 VIP",
+    "description": "Elegante y sofisticado, con notas orientales y amaderadas.",
+    "price": 359000,
+    "badge": "Nuevo",
+    "category": "mujer",
+    "image": ""
+  }
+]

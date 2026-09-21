@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+  <%- include('../partials/header') %>
+
+  <section class="contacto" style="padding-top:70px;">
+    <div class="wrap">
+      <div class="contacto-box">
+        <h2><%= heading %></h2>
+        <p class="sub">Completa los datos del perfume.</p>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <p style="color:#e0a8a8; font-size:13px; margin-bottom:16px; text-align:center;"><%= error %></p>
+        <% } %>
+
+        <form action="<%= formAction %>" method="<%= formMethod %>">
+          <div class="field">
+            <label for="brand">Marca</label>
+            <input id="brand" name="brand" type="text" value="<%= product.brand %>" placeholder="Ej: Versace" required>
+          </div>
+          <div class="field">
+            <label for="name">Nombre del perfume</label>
+            <input id="name" name="name" type="text" value="<%= product.name %>" placeholder="Ej: Eros" required>
+          </div>
+          <div class="field">
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" placeholder="Notas olfativas, familia, etc." required><%= product.description %></textarea>
+          </div>
+          <div class="field">
+            <label for="price">Precio (COP)</label>
+            <input id="price" name="price" type="number" min="0" step="1000" value="<%= product.price %>" placeholder="185000" required>
+          </div>
+          <div class="field">
+            <label for="category">Categoría</label>
+            <select id="category" name="category" style="width:100%; background: var(--bg); border:1px solid var(--line); color: var(--paper); padding:12px 14px; font-size:13px;">
+              <option value="mujer" <%= product.category === 'mujer' ? 'selected' : '' %>>Mujer</option>
+              <option value="hombre" <%= product.category === 'hombre' ? 'selected' : '' %>>Hombre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="badge">Etiqueta (opcional)</label>
+            <input id="badge" name="badge" type="text" value="<%= product.badge %>" placeholder="Ej: Nuevo, -15%">
+          </div>
+          <div class="field">
+            <label for="image">URL de imagen (opcional)</label>
+            <input id="image" name="image" type="url" value="<%= product.image %>" placeholder="https://...">
+          </div>
+
+          <div style="display:flex; gap:12px;">
+            <a class="btn" style="flex:1; justify-content:center;" href="/productos">Cancelar</a>
+            <button class="btn btn-solid" style="flex:1;" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+
+</body>
+</html>
